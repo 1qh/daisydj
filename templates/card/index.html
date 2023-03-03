@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% load i18n %}
+{% block full_title %}
+    {{ PROJECT_NAME }}
+{% endblock full_title %}
+{% block content %}
+    <form method="get">
+        <div >
+            <h3>Client</h3>
+            {% for client in clients %}
+                <div>
+                    <input type="checkbox"
+                           name="clients"
+                           id="client-{{ client.pk }}"
+                           value="{{ client.pk }}"
+                           {% if client.selected %}checked{% endif %}/>
+                    <label for="client-{{ client.pk }}">{{ client.client }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <div >
+            <h3>Version</h3>
+            {% for version in versions %}
+                <div>
+                    <input type="checkbox"
+                           name="versions"
+                           id="version-{{ version.version }}"
+                           value="{{ version.version }}"
+                           {% if version.selected %}checked{% endif %}/>
+                    <label for="version-{{ version.version }}">{{ version.version }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit">Apply Filters</button>
+    </form>
+    {% for artifact in artifacts %}
+        <div>{{ artifact.video_path }}</div>
+    {% empty %}
+        <p>No artifacts found.</p>
+    {% endfor %}
+{% endblock content %}

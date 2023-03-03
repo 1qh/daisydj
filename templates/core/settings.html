@@ -1,0 +1,37 @@
+{% extends '_base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate "Settings" %}
+{% endblock title %}
+{% block content %}
+  <section>
+    <div>
+      <h2>{% translate "Account" %}</h2>
+      <form id="form_logout" method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <div>
+          <button type="submit">{% translate "Log out" %}</button>
+        </div>
+      </form>
+      <h2>{% translate "Settings" %}</h2>
+      {% include "includes/messages.html" %}
+      {% if user.avatar %}<img src="{{ user.avatar.url }}" width="50" height="50" alt="" />{% endif %}
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.first_name }} {{ form.last_name }}
+        <div>{{ form.avatar }}</div>
+        <div>
+          <button type="submit">{% translate "Update" %}</button>
+        </div>
+      </form>
+      <h2>{% translate "Delete account" %}</h2>
+      <form id="form_delete_account"
+            method="post"
+            action="{% url 'delete-account' %}">
+        {% csrf_token %}
+        <div>
+          <button type="submit">{% translate "Permanently delete" %}</button>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock content %}

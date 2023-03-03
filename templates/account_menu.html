@@ -1,0 +1,13 @@
+<a class="self-start font-light normal-case btn btn-ghost"
+   href="{% url 'account_signup' %}">Signup</a>
+<a class="self-start font-light normal-case btn btn-ghost"
+   href="{% url 'account_login' %}">Login</a>
+<a class="self-start font-light normal-case btn btn-ghost"
+   href="{% url 'account_reset_password' %}">Reset Password</a>
+<a class="self-start font-light normal-case btn btn-ghost"
+   href="{% url 'settings' %}">Settings</a>
+<a class="self-start font-light normal-case btn btn-ghost"
+   href="{% url 'account_email' %}">Email Management</a>
+<div class="divider">{{ user }}</div>
+<a class="self-start font-light normal-case btn btn-ghost"
+   href="{% url 'account_logout' %}">Logout</a>
